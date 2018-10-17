@@ -10,7 +10,7 @@ namespace Ejercicio.Test
         private int[][] _Salida;
 
         /// <summary>
-        /// 
+        /// Prueba con el valor de entrada y los valores esperados ingresados directamente
         /// </summary>
         [TestMethod]
         public void Escenario1()
@@ -21,7 +21,7 @@ namespace Ejercicio.Test
         }
 
         /// <summary>
-        /// 
+        /// Prueba para verificar que no se ordene siempre los impares primero sino el número menor
         /// </summary>
         [TestMethod]
         public void Escenario2()
@@ -32,7 +32,7 @@ namespace Ejercicio.Test
         }
 
         /// <summary>
-        /// 
+        /// Prueba con el valor de entrada y los valores esperados ingresados directamente
         /// </summary>
         [TestMethod]
         public void Escenario3()

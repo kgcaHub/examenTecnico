@@ -51,6 +51,7 @@
     <Compile Include="ChangeStringTest.cs" />
     <Compile Include="OrderRangeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MoneyPartsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

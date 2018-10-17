@@ -1,0 +1,6 @@
+E:\Hub\examenTecnico\Parte1Ejercicios\Ejercicio\Ejercicio.Solucion\bin\Debug\Ejercicio.Solucion.dll
+E:\Hub\examenTecnico\Parte1Ejercicios\Ejercicio\Ejercicio.Solucion\bin\Debug\Ejercicio.Solucion.pdb
+E:\Hub\examenTecnico\Parte1Ejercicios\Ejercicio\Ejercicio.Solucion\obj\Debug\Ejercicio.Solucion.csprojResolveAssemblyReference.cache
+E:\Hub\examenTecnico\Parte1Ejercicios\Ejercicio\Ejercicio.Solucion\obj\Debug\Ejercicio.Solucion.csproj.CoreCompileInputs.cache
+E:\Hub\examenTecnico\Parte1Ejercicios\Ejercicio\Ejercicio.Solucion\obj\Debug\Ejercicio.Solucion.dll
+E:\Hub\examenTecnico\Parte1Ejercicios\Ejercicio\Ejercicio.Solucion\obj\Debug\Ejercicio.Solucion.pdb

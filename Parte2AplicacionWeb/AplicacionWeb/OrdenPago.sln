@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrdenPago.lib", "OrdenPago.lib", "{D8C722EE-6D8F-474E-AB9B-F44721B722C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OrdenPago.web", "OrdenPago.web", "{F88400EB-C963-4B1F-BB13-30D8052064DB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdenPago.lib.da", "OrdenPago.lib.da\OrdenPago.lib.da.csproj", "{0F5984D5-D45B-4DCE-AE81-C1821B1FBEDC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdenPago.lib.bn", "OrdenPago.lib.bn\OrdenPago.lib.bn.csproj", "{79CE1E86-A920-42B9-9140-7219EFC0AD5D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrdenPago.lib.vm", "OrdenPago.lib.vm\OrdenPago.lib.vm.csproj", "{735AA1D3-8267-43B6-9EAA-1CCF7D88A55A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrdenPago.web.api", "OrdenPago.web.api\OrdenPago.web.api.csproj", "{28E57B7C-DB5A-4E63-8018-D4198D3FEB4C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F5984D5-D45B-4DCE-AE81-C1821B1FBEDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F5984D5-D45B-4DCE-AE81-C1821B1FBEDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F5984D5-D45B-4DCE-AE81-C1821B1FBEDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F5984D5-D45B-4DCE-AE81-C1821B1FBEDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79CE1E86-A920-42B9-9140-7219EFC0AD5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79CE1E86-A920-42B9-9140-7219EFC0AD5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79CE1E86-A920-42B9-9140-7219EFC0AD5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79CE1E86-A920-42B9-9140-7219EFC0AD5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{735AA1D3-8267-43B6-9EAA-1CCF7D88A55A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{735AA1D3-8267-43B6-9EAA-1CCF7D88A55A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{735AA1D3-8267-43B6-9EAA-1CCF7D88A55A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{735AA1D3-8267-43B6-9EAA-1CCF7D88A55A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28E57B7C-DB5A-4E63-8018-D4198D3FEB4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28E57B7C-DB5A-4E63-8018-D4198D3FEB4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28E57B7C-DB5A-4E63-8018-D4198D3FEB4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28E57B7C-DB5A-4E63-8018-D4198D3FEB4C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0F5984D5-D45B-4DCE-AE81-C1821B1FBEDC} = {D8C722EE-6D8F-474E-AB9B-F44721B722C3}
+		{79CE1E86-A920-42B9-9140-7219EFC0AD5D} = {D8C722EE-6D8F-474E-AB9B-F44721B722C3}
+		{735AA1D3-8267-43B6-9EAA-1CCF7D88A55A} = {D8C722EE-6D8F-474E-AB9B-F44721B722C3}
+		{28E57B7C-DB5A-4E63-8018-D4198D3FEB4C} = {F88400EB-C963-4B1F-BB13-30D8052064DB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0CF37F6C-3547-4522-8788-655E95F0B945}
+	EndGlobalSection
+EndGlobal

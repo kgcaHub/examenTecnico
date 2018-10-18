@@ -1,0 +1,47 @@
+﻿<div id="cptBanco" class="card">
+    <form id="frmBanco">
+        <!--onsubmit="return guardarBanco();">-->
+        <div class="card-header">
+            <h4>Mantenimiento de bancos</h4>
+        </div>
+        <div class="card-body">
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <div class="list-group" id="lstBancos">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group row">
+                        <label for="txtNombre" class="col-3 col-form-label">Nombre:</label>
+                        <div class="col-9">
+                            <input id="txtNombre" name="Nombre" type="text" class="form-control" value="" /> <!--required-->
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="txtDireccion" class="col-3 col-form-label">Dirección:</label>
+                        <div class="col-9">
+                            <input id="txtDireccion" name="Direccion" type="text" class="form-control" value="" /> <!--required-->
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="txtDireccion" class="col-3 col-form-label">Fecha de registro:</label>
+                        <div class="col-9">
+                            <input id="txtFecRegistro" type="text" class="form-control" value="" disabled />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-3 col-form-label"></div>
+                        <div class="col-9">
+                            <div id="btnGuardar" class="btn btn-primary" onclick="guardarBanco()">Guardar</div> <!--required-->
+                            <div id="btnEliminar" class="btn btn-primary" onclick="eliminarBanco()">Eliminar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="card-footer">
+            <!--<div id="btnRegistrar" class="btn btn-primary" onclick="eV_registrar()">Registrar invitados</div>
+            <!--<button type="submit" class="btn btn-primary">Guardar</button>
+        </div>-->
+    </form>
+</div>

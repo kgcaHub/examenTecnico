@@ -11,6 +11,7 @@ namespace OrdenPago.web.api.Controllers
     {
         [HttpPost]
         [Route("banco/registrar")]
+        [OpAtributoException]
         public void Registrar(lib.vm.Banco banco)
         {
             string _usuario = "kcarhuas";
@@ -22,6 +23,7 @@ namespace OrdenPago.web.api.Controllers
 
         [HttpPost]
         [Route("banco/actualizar")]
+        [OpAtributoException]
         public void Actualizar(lib.vm.Banco banco)
         {
             string _usuario = "kcarhuas";
@@ -33,6 +35,7 @@ namespace OrdenPago.web.api.Controllers
 
         [HttpPost]
         [Route("banco/eliminar")]
+        [OpAtributoException]
         public void Eliminar(Guid id)
         {
             string _usuario = "kcarhuas";
@@ -44,37 +47,28 @@ namespace OrdenPago.web.api.Controllers
 
         [HttpGet]
         [Route("banco/listar")]
+        [OpAtributoException]
         public ActionResult<List<lib.vm.Banco>> Listar()
         {
             List<lib.vm.Banco> _resultado = new List<lib.vm.Banco>();
-            //using (lib.bn.Banco _bnBanco = new lib.bn.Banco())
-            //{
-            //    _resultado = _bnBanco.Listar();
-            //}
-
-            for (int i = 0; i < 5; i++)
+            using (lib.bn.Banco _bnBanco = new lib.bn.Banco())
             {
-                lib.vm.Banco _banco = new lib.vm.Banco();
-                _banco.Id = Guid.NewGuid();
-                _banco.Nombre = "Banco de la Nación";
-                _resultado.Add(_banco);
+                _resultado = _bnBanco.Listar();
             }
+
             return _resultado;
         }
 
         [HttpGet]
         [Route("banco/obtener/{id}")]
+        [OpAtributoException]
         public ActionResult<lib.vm.Banco> Obtener(Guid id)
         {
             lib.vm.Banco _resultado = new lib.vm.Banco();
-            //using (lib.bn.Banco _bnBanco = new lib.bn.Banco())
-            //{
-            //    _resultado = _bnBanco.Obtener(id);
-            //}
-            _resultado.Nombre = "Banco pichincha";
-            _resultado.Direccion = "Avenida siempre viva 134";
-            _resultado.FechaRegistro = DateTime.Now.ToString("dd/MM/yyyy");
-
+            using (lib.bn.Banco _bnBanco = new lib.bn.Banco())
+            {
+                _resultado = _bnBanco.Obtener(id);
+            }
             return _resultado;
         }
     }

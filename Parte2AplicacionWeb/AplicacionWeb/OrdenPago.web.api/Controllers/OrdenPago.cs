@@ -13,28 +13,31 @@ namespace OrdenPago.web.api.Controllers
     {
         [HttpPost]
         [Route("ordenPago/registrar")]
-        public void Registrar(lib.vm.Banco banco)
+        [OpAtributoException]
+        public void Registrar(lib.vm.OrdenPago ordenPago)
         {
             string _usuario = "kcarhuas";
             using (lib.bn.OrdenPago _bnOrdenPago = new lib.bn.OrdenPago(_usuario))
             {
-                _bnOrdenPago.Registrar(banco);
+                _bnOrdenPago.Registrar(ordenPago);
             }
         }
 
         [HttpPost]
         [Route("ordenPago/actualizar")]
-        public void Actualizar(lib.vm.Banco banco)
+        [OpAtributoException]
+        public void Actualizar(lib.vm.OrdenPago ordenPago)
         {
             string _usuario = "kcarhuas";
             using (lib.bn.OrdenPago _bnOrdenPago = new lib.bn.OrdenPago(_usuario))
             {
-                _bnOrdenPago.Actualizar(banco);
+                _bnOrdenPago.Actualizar(ordenPago);
             }
         }
 
         [HttpPost]
         [Route("ordenPago/eliminar")]
+        [OpAtributoException]
         public void Eliminar(Guid id)
         {
             string _usuario = "kcarhuas";
@@ -45,43 +48,34 @@ namespace OrdenPago.web.api.Controllers
         }
 
         [HttpGet]
-        [Route("ordenPago/listar")]
-        public ActionResult<List<lib.vm.Banco>> Listar()
+        [Route("ordenPago/listar/{sucursal}")]
+        [OpAtributoException]
+        public ActionResult<List<lib.vm.OrdenPago>> Listar(Guid sucursal)
         {
-            List<lib.vm.Banco> _resultado = new List<lib.vm.Banco>();
-            //using (lib.bn.Banco _bnBanco = new lib.bn.Banco())
-            //{
-            //    _resultado = _bnBanco.Listar();
-            //}
-
-            for (int i = 0; i < 5; i++)
+            List<lib.vm.OrdenPago> _resultado = new List<lib.vm.OrdenPago>();
+            using (lib.bn.OrdenPago _bnOrdenPago = new lib.bn.OrdenPago())
             {
-                lib.vm.Banco _banco = new lib.vm.Banco();
-                _banco.Id = Guid.NewGuid();
-                _banco.Nombre = "Banco de la Nación";
-                _resultado.Add(_banco);
+                _resultado = _bnOrdenPago.Listar(sucursal);
             }
             return _resultado;
         }
 
         [HttpGet]
         [Route("ordenPago/obtener/{id}")]
-        public ActionResult<lib.vm.Banco> Obtener(Guid id)
+        [OpAtributoException]
+        public ActionResult<lib.vm.OrdenPago> Obtener(Guid id)
         {
-            lib.vm.Banco _resultado = new lib.vm.Banco();
-            //using (lib.bn.Banco _bnBanco = new lib.bn.Banco())
-            //{
-            //    _resultado = _bnBanco.Obtener(id);
-            //}
-            _resultado.Nombre = "Banco pichincha";
-            _resultado.Direccion = "Avenida siempre viva 134";
-            _resultado.FechaRegistro = DateTime.Now.ToString("dd/MM/yyyy");
-
+            lib.vm.OrdenPago _resultado = new lib.vm.OrdenPago();
+            using (lib.bn.OrdenPago _bnBanco = new lib.bn.OrdenPago())
+            {
+                _resultado = _bnBanco.Obtener(id);
+            }
             return _resultado;
         }
 
         [HttpGet]
         [Route("ordenPago/filtrar/{nombreSucursal}/{moneda}")]
+        [OpAtributoException]
         public ActionResult<IEnumerable<lib.vm.OrdenPago>> filtrar(string nombreSucursal, string moneda)
         {
             List<lib.vm.OrdenPago> _resultado = new List<lib.vm.OrdenPago>();

@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OrdenPago.lib.bn\OrdenPago.lib.bn.csproj" />
+    <ProjectReference Include="..\OrdenPago.lib.util\OrdenPago.lib.util.csproj" />
     <ProjectReference Include="..\OrdenPago.lib.vm\OrdenPago.lib.vm.csproj" />
   </ItemGroup>
 

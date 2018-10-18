@@ -39,7 +39,7 @@ namespace OrdenPago.lib.da
             }
         }
 
-        public void Eliminar(Guid id, string usuario)
+        public void Eliminar(Guid id, string usuario, SqlTransaction transaccion)
         {
             using (SqlCommand _comando = this._Conexion.CreateCommand())
             {
@@ -47,6 +47,7 @@ namespace OrdenPago.lib.da
                 _comando.CommandText = "OP.SP_banco_eliminar";
                 _comando.Parameters.AddWithValue("@id", id);
                 _comando.Parameters.AddWithValue("@usuario", usuario);
+                _comando.Transaction = transaccion;
                 _comando.ExecuteNonQuery();
             }
         }
@@ -97,29 +98,6 @@ namespace OrdenPago.lib.da
             return _resultado;
         }
 
-        public Guid Obtener(string nombre, Guid id)
-        {
-            Guid _resultado = Guid.Empty;
-            using (SqlCommand _comando = this._Conexion.CreateCommand())
-            {
-                _comando.CommandType = CommandType.StoredProcedure;
-                _comando.CommandText = "OP.SP_banco_obtener_nombre_id";
-                _comando.Parameters.AddWithValue("@nombre", nombre);
-                _comando.Parameters.AddWithValue("@id", id);
-
-                object _scalar = _comando.ExecuteScalar();
-
-                if (_scalar != null)
-                {
-                    if (_scalar != DBNull.Value)
-                    {
-                        _resultado = Guid.Parse(_scalar.ToString());
-                    }
-                }
-            }
-            return _resultado;
-        }
-
         public List<vm.Banco> Listar()
         {
             List<vm.Banco> _resultado = new List<vm.Banco>();
@@ -128,7 +106,7 @@ namespace OrdenPago.lib.da
                 _comando.CommandType = CommandType.StoredProcedure;
                 _comando.CommandText = "OP.SP_banco_listar";
 
-                using (SqlDataReader _lector = _comando.ExecuteReader(CommandBehavior.SingleRow))
+                using (SqlDataReader _lector = _comando.ExecuteReader(CommandBehavior.Default))
                 {
                     while (_lector.Read())
                     {

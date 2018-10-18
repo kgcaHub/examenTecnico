@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrdenPago.lib.util;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
@@ -11,7 +12,6 @@ namespace OrdenPago.lib.bn
 
         public Banco()
         {
-           
         }
 
         public Banco(string usuario)
@@ -22,36 +22,31 @@ namespace OrdenPago.lib.bn
         public void Registrar(vm.Banco banco)
         {
             da.Banco _daBanco = new da.Banco(this._Conexion);
-            if (_daBanco.Obtener(banco.Nombre) == Guid.Empty)
+            banco.Id = Guid.NewGuid();
+            this.ValidarEntidad(banco);
+            if (_daBanco.Obtener(banco.Nombre) != Guid.Empty)
             {
-                banco.Id = Guid.NewGuid();
-                _daBanco.Registrar(banco, this._Usuario);
+                throw new OpException("El nombre del banco ya se encuentra registrado");
             }
-            else
-            {
-                throw new Exception("El nombre del banco ya se encuentra registrado");
-            }
+            _daBanco.Registrar(banco, this._Usuario);
         }
 
         public void Actualizar(vm.Banco banco)
         {
             da.Banco _daBanco = new da.Banco(this._Conexion);
-            if (_daBanco.Obtener(banco.Nombre, banco.Id) == Guid.Empty)
+            this.ValidarEntidad(banco);
+            if (_daBanco.Obtener(banco.Nombre) != banco.Id)
             {
-                banco.Id = Guid.NewGuid();
-                _daBanco.Actualizar(banco, this._Usuario);
+                throw new OpException("El nombre del banco ya se encuentra registrado");
             }
-            else
-            {
-                throw new Exception("El nombre del banco ya se encuentra registrado");
-            }
+            _daBanco.Actualizar(banco, this._Usuario);
         }
 
         public void Eliminar(Guid id)
         {
             if (id == Guid.Empty)
             {
-                throw new Exception("Seleccione un banco por favor");
+                throw new OpException("Seleccione un banco por favor");
             }
             else
             {
@@ -63,9 +58,9 @@ namespace OrdenPago.lib.bn
                 {
                     try
                     {
-                        _daOrdenPago.EliminarBanco(id, this._Usuario);
-                        _daSucursal.EliminarBanco(id, this._Usuario);
-                        _daBanco.Eliminar(id, this._Usuario);
+                        _daOrdenPago.EliminarBanco(id, this._Usuario, _transaction);
+                        _daSucursal.EliminarBanco(id, this._Usuario, _transaction);
+                        _daBanco.Eliminar(id, this._Usuario, _transaction);
                     }
                     catch (Exception ex)
                     {
@@ -93,6 +88,22 @@ namespace OrdenPago.lib.bn
             _resultado = _daBanco.Listar();
 
             return _resultado;
+        }
+
+        private void ValidarEntidad(vm.Banco banco)
+        {
+            if (banco.Id == Guid.Empty)
+            {
+                throw new OpException("Seleccione el banco");
+            }
+            if (string.IsNullOrEmpty(banco.Nombre))
+            {
+                throw new OpException("El nombre del banco esta vacio");
+            }
+            if (string.IsNullOrEmpty(banco.Direccion))
+            {
+                throw new OpException("La dirección del banco esta vacia");
+            }
         }
     }
 }

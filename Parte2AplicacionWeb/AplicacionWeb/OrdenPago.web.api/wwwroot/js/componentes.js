@@ -15,3 +15,30 @@ function visualizarComponente(idComponente, funcionInicial) {
         adjuntarComponente(idComponente, funcionInicial);
     });
 }
+
+function succesAjax()
+{
+    $("#altWarning").hide();
+    $("#altDanger").hide();
+    $("#altSuccess").hide();
+    $('#altSuccess').html("Proceso exitoso!");
+    $("#altSuccess").show();
+}
+
+function errorAjax(error)
+{
+    $("#altWarning").hide();
+    $("#altDanger").hide();
+    $("#altSuccess").hide();
+    debugger;
+    switch (error.responseJSON.tipo) {
+        case "Validacion":
+            $('#altWarning').html(error.responseJSON.mensajeUsuario);
+            $("#altWarning").show();
+            break;
+        case "Error de sistema":
+            $('#altDanger').html(error.responseJSON.mensajeUsuario);
+            $("#altDanger").show();
+            break;
+    }
+}

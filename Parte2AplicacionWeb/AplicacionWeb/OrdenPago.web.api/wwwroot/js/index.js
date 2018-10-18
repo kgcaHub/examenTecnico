@@ -11,7 +11,7 @@ function visualizarSucursal() {
 }
 
 function visualizarOrdenPago() {
-    visualizarComponente("OrdenPago", listarBanco);
+    visualizarComponente("OrdenPago", llenarComboBancoOrdenPago);
 }
 
 function listarBanco(llenarBanco) {
@@ -23,6 +23,7 @@ function listarBanco(llenarBanco) {
         })
         .fail(function (jqXHR, textStatus, err) {
             debugger;
+            errorAjax(jqXHR);
         });
 }
 
@@ -61,55 +62,70 @@ function obtenerBanco(id)
         })
         .fail(function (jqXHR, textStatus, err) {
             debugger;
+            errorAjax(jqXHR);
         });
 }
 
-function guardarBanco() {
+function registrarBanco() {
     debugger;
     var serialice = $('#frmBanco').serialize();
 
-    if (idBanco === "") {
-        $.post("/banco/registrar", serialice)
-            .done(function (data) {
-                debugger;
-                listarBanco();
-            })
-            .fail(function (jqXHR, textStatus, err) {
-                debugger;
-            });
-    }
-    else
-    {
-        serialice = serialice + "&id=" + idBanco;
-        $.post("/banco/actualizar", serialice)
-            .done(function (data) {
-                debugger;
-                listarBanco();
-            })
-            .fail(function (jqXHR, textStatus, err) {
-                debugger;
-            });
-    }
+    $.post("/banco/registrar", serialice)
+        .done(function (data) {
+            debugger;
+            succesAjax();
+            limpiarBanco();
+            llenarListaBanco();
+        })
+        .fail(function (jqXHR, textStatus, err) {
+            debugger;
+            errorAjax(jqXHR);
+        });
+}
+
+function actualizarBanco() {
+    debugger;
+    var serialice = $('#frmBanco').serialize() + "&id=" + idBanco;
+
+    $.post("/banco/actualizar", serialice)
+        .done(function (data) {
+            debugger;
+            succesAjax();
+            limpiarBanco();
+            llenarListaBanco();
+        })
+        .fail(function (jqXHR, textStatus, err) {
+            debugger;
+            errorAjax(jqXHR);
+        });
 
     return false;
 }
 
+
+
 function eliminarBanco() {
     debugger;
-    $.post("/banco/eliminar", "{id:" + idBanco + "}")
+    $.post("/banco/eliminar", { "": idBanco })
         .done(function (data) {
             debugger;
-            listarBanco();
+            succesAjax();
+            limpiarBanco();
+            llenarListaBanco();
         })
         .fail(function (jqXHR, textStatus, err) {
             debugger;
+            errorAjax(jqXHR);
         });
 }
 
-
-
-
-
+function limpiarBanco()
+{
+    idBanco = "";
+    $("#txtNombre").val("");
+    $("#txtDireccion").val("");
+    $("#txtFecRegistro").val("");
+}
 
 function llenarComboBancoSucursal() {
     listarBanco(
@@ -139,18 +155,19 @@ function listarSucursal(llenarSucursal) {
         })
         .fail(function (jqXHR, textStatus, err) {
             debugger;
+            errorAjax(jqXHR);
         });
 }
 
 function llenarListaSucursal()
 {
     listarSucursal(function (data) {
+        $('#lstSucursales').empty();
         for (var item in data) {
             agregarSucursalLista(data[item].id, data[item].nombre);
         }
     });
 }
-
 
 function agregarSucursalLista(id, nombre) {
     var boton = '<button type="button" class="list-group-item list-group-item-action"' +
@@ -160,7 +177,7 @@ function agregarSucursalLista(id, nombre) {
 
 function obtenerSucursal(id) {
     debugger;
-    idBanco = id;
+    idSucursal = id;
     $.get("/sucursal/obtener/" + id)
         .done(function (data) {
             debugger;
@@ -170,130 +187,200 @@ function obtenerSucursal(id) {
         })
         .fail(function (jqXHR, textStatus, err) {
             debugger;
+            errorAjax(jqXHR);
         });
 }
 
-function guardarSucursal() {
+function registrarSucursal() {
     debugger;
-    var serialice = $('#frmBanco').serialize();
+    var serialice = $('#frmSucursal').serialize();
 
-    if (idSucursal === "") {
-        $.post("/sucursal/registrar", serialice)
-            .done(function (data) {
-                debugger;
-                llenarSucursales();
-            })
-            .fail(function (jqXHR, textStatus, err) {
-                debugger;
-            });
-    }
-    else {
-        serialice = serialice + "&id=" + idSucursal;
-        $.post("/sucursal/actualizar", serialice)
-            .done(function (data) {
-                debugger;
-                llenarSucursales();
-            })
-            .fail(function (jqXHR, textStatus, err) {
-                debugger;
-            });
-    }
-
-    return false;
-}
-
-function eliminarSucursal() {
-    debugger;
-    $.post("/sucursal/eliminar", "{id:" + idSucursal + "}")
+    $.post("/sucursal/registrar", serialice)
         .done(function (data) {
             debugger;
+            succesAjax();
+            limpiarSucursal();
             llenarSucursales();
         })
         .fail(function (jqXHR, textStatus, err) {
             debugger;
+            errorAjax(jqXHR);
         });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-function listarOrdenPago() {
+function actualizarSucursal() {
     debugger;
-    $.get("/banco/listar")
+    var serialice = $('#frmSucursal').serialize() + "&id=" + idSucursal;
+
+    $.post("/sucursal/actualizar", serialice)
         .done(function (data) {
             debugger;
-            for (var item in data) {
-                agregarBancoLista(data[item].id, data[item].nombre);
-            }
+            succesAjax();
+            limpiarSucursal();
+            llenarSucursales();
         })
         .fail(function (jqXHR, textStatus, err) {
             debugger;
+            errorAjax(jqXHR);
         });
 }
 
-function agregarOrdenPagoLista(id, nombre) {
+function eliminarSucursal() {
+    debugger;
+    $.post("/sucursal/eliminar", { "": idSucursal })
+        .done(function (data) {
+            debugger;
+            succesAjax();
+            limpiarSucursal();
+            llenarSucursales();
+        })
+        .fail(function (jqXHR, textStatus, err) {
+            debugger;
+            errorAjax(jqXHR);
+        });
+}
+
+function limpiarSucursal() {
+    idSucursal = "";
+    $("#txtNombre").val("");
+    $("#txtDireccion").val("");
+    $("#txtFecRegistro").val("");
+}
+
+
+
+
+
+
+function llenarComboBancoOrdenPago() {
+    listarBanco(
+        function (data) {
+            $('#cmbBanco').empty();
+            for (var item in data) {
+                $('#cmbBanco').append("<option value=" + data[item].id + ">" + data[item].nombre + "</option>")
+            }
+            llenarComboSucursalOrdenPago();
+        }
+    )
+}
+
+function llenarComboSucursalOrdenPago() {
+    idBanco = $("#cmbBanco").val();
+    listarSucursal(
+        function (data) {
+            $('#cmbSucursal').empty();
+            for (var item in data) {
+                $('#cmbSucursal').append("<option value=" + data[item].id + ">" + data[item].nombre + "</option>")
+            }
+            llenarOrdenPagoes();
+        }
+    )
+}
+
+function llenarOrdenPagoes() {
+    debugger;
+    idSucursal = $("#cmbSucursal").val();
+    llenarListaOrdenPago();
+}
+
+function listarOrdenPago(llenarOrdenPago) {
+    debugger;
+    $.get("/OrdenPago/listar/" + idSucursal)
+        .done(function (data) {
+            debugger;
+            llenarOrdenPago(data);
+        })
+        .fail(function (jqXHR, textStatus, err) {
+            debugger;
+            errorAjax(jqXHR);
+        });
+}
+
+function llenarListaOrdenPago() {
+    listarOrdenPago(function (data) {
+        $('#lstOrdenPagoes').empty();
+        for (var item in data) {
+            agregarOrdenPagoLista(data[item].id, data[item].monto);
+        }
+    });
+}
+
+function agregarOrdenPagoLista(id, monto) {
     var boton = '<button type="button" class="list-group-item list-group-item-action"' +
-        'onclick = "obtenerBanco(\'' + id + '\')"> ' + nombre + '</button>';
-    $('#lstBancos').append(boton);
+        'onclick = "obtenerOrdenPago(\'' + id + '\')"> ' + monto + '</button>';
+    $('#lstOrdenPagoes').append(boton);
 }
 
 function obtenerOrdenPago(id) {
     debugger;
-    idBanco = id;
-    $.get("/banco/obtener/" + id)
+    idOrdenPago = id;
+    $.get("/OrdenPago/obtener/" + id)
         .done(function (data) {
             debugger;
-            $("#txtNombre").val(data.nombre);
-            $("#txtDireccion").val(data.direccion);
-            $("#txtFecRegistro").val(data.fechaRegistro);
+            $("#txtMonto").val(data.monto);
+            $("#cmbMoneda").val(data.moneda);
+            $("#cmbEstado").val(data.estado);
+            $("#txtFecPago").val(data.fechaPago);
         })
         .fail(function (jqXHR, textStatus, err) {
             debugger;
+            errorAjax(jqXHR);
         });
 }
 
-function guardarOrdenPago() {
+function registrarOrdenPago() {
     debugger;
-    var serialice = $('#frmBanco').serialize();
+    var serialice = $('#frmOrdenPago').serialize();
 
-    if (idBanco === "") {
-        $.post("/banco/registrar", serialice)
-            .done(function (data) {
-                debugger;
-            })
-            .fail(function (jqXHR, textStatus, err) {
-                debugger;
-            });
-    }
-    else {
-        serialice = serialice + "&id=" + idBanco;
-        $.post("/banco/actualizar", serialice)
-            .done(function (data) {
-                debugger;
-            })
-            .fail(function (jqXHR, textStatus, err) {
-                debugger;
-            });
-    }
+    $.post("/OrdenPago/registrar", serialice)
+        .done(function (data) {
+            debugger;
+            succesAjax();
+            limpiarOrdenPago();
+            llenarOrdenPagoes();
+        })
+        .fail(function (jqXHR, textStatus, err) {
+            debugger;
+            errorAjax(jqXHR);
+        });
+}
 
-    return false;
+function actualizarOrdenPago() {
+    debugger;
+    var serialice = $('#frmOrdenPago').serialize() + "&id=" + idOrdenPago;
+
+    $.post("/OrdenPago/actualizar", serialice)
+        .done(function (data) {
+            debugger;
+            succesAjax();
+            limpiarOrdenPago();
+            llenarOrdenPagoes();
+        })
+        .fail(function (jqXHR, textStatus, err) {
+            debugger;
+            errorAjax(jqXHR);
+        });
 }
 
 function eliminarOrdenPago() {
     debugger;
-    $.post("/banco/eliminar", "{id:" + idBanco + "}")
+    $.post("/OrdenPago/eliminar", { "": idOrdenPago })
         .done(function (data) {
             debugger;
+            succesAjax();
+            limpiarOrdenPago();
+            llenarOrdenPagoes();
         })
         .fail(function (jqXHR, textStatus, err) {
             debugger;
+            errorAjax(jqXHR);
         });
 }
+
+function limpiarOrdenPago() {
+    idOrdenPago = "";
+    $("#txtMonto").val("");
+    $("#txtFecPago").val("");
+}
+
+

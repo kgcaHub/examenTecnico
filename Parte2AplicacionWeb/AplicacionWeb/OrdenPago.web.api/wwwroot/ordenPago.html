@@ -1,6 +1,5 @@
 ﻿<div id="cptOrdenPago" class="card">
     <form id="frmOrdenPago">
-        <!--onsubmit="return guardarBanco();">-->
         <div class="card-header">
             <h4>Mantenimiento de orden de pago</h4>
         </div>
@@ -8,33 +7,60 @@
             <div id="colDetailsUpEvento" class="collapse show">
                 <div class="form-group row">
                     <div class="col-md-4">
-                        <div class="list-group" id="lstBancos">
+                        <div class="list-group" id="lstOrdenPagoes">
                         </div>
                     </div>
                     <div class="col-md-8">
                         <div class="form-group row">
-                            <label for="txtNombre" class="col-3 col-form-label">Nombre:</label>
+                            <label for="cmbBanco" class="col-3 col-form-label">Banco:</label>
                             <div class="col-9">
-                                <input id="txtNombre" name="Nombre" type="text" class="form-control" value="" /> <!--required-->
+                                <select class="form-control" id="cmbBanco" name="Banco" onchange="llenarComboSucursalOrdenPago();"></select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="txtDireccion" class="col-3 col-form-label">Dirección:</label>
+                            <label for="cmbSucursal" class="col-3 col-form-label">Sucursal:</label>
                             <div class="col-9">
-                                <input id="txtDireccion" name="Direccion" type="text" class="form-control" value="" /> <!--required-->
+                                <select class="form-control" id="cmbSucursal"  name="Sucursal" onchange="llenarOrdenPagoes();"></select>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="txtDireccion" class="col-3 col-form-label">Fecha de registro:</label>
+                            <label for="txtMonto" class="col-3 col-form-label">Monto:</label>
                             <div class="col-9">
-                                <input id="txtFecRegistro" type="text" class="form-control" value="" disabled />
+                                <input id="txtMonto" name="Monto" type="number" class="form-control" value="0.00" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="cmbMoneda" class="col-3 col-form-label">Moneda:</label>
+                            <div class="col-9">
+                                <select class="form-control" id="cmbMoneda" name="Moneda">
+                                    <option value="SOLES">SOLES</option>
+                                    <option value="DOLARES">DOLARES</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="cmbEstado" class="col-3 col-form-label">Estado:</label>
+                            <div class="col-9">
+                                <select class="form-control" id="cmbEstado" name="Estado">
+                                    <option value="PAGADA">PAGADA</option>
+                                    <option value="DECLINADA">DECLINADA</option>
+                                    <option value="FALLIDA">FALLIDA</option>
+                                    <option value="ANULADA">ANULADA</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="txtDireccion" class="col-3 col-form-label">Fecha de pago:</label>
+                            <div class="col-9">
+                                <input id="txtFecPago" type="date" name="FechaPago" class="form-control"/>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-3 col-form-label"></div>
                             <div class="col-9">
-                                <div id="btnGuardar" class="btn btn-primary" onclick="guardarBanco()">Guardar</div> <!--required-->
-                                <div id="btnEliminar" class="btn btn-primary" onclick="eliminarBanco()">Eliminar</div>
+                                <div id="btnRegistrar" class="btn btn-success" onclick="registrarOrdenPago()">Registrar</div>
+                                <div id="btnActualizar" class="btn btn-info" onclick="actualizarOrdenPago()">Actualizar</div>
+                                <div id="btnEliminar" class="btn btn-danger" onclick="eliminarOrdenPago()">Eliminar</div>
                             </div>
                         </div>
                     </div>

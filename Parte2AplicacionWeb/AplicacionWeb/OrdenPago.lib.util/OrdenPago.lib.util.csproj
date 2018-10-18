@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>OrdenPago.lib.util</RootNamespace>
   </PropertyGroup>
 
 </Project>

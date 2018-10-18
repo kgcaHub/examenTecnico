@@ -1,6 +1,5 @@
 ﻿<div id="cptSucursal" class="card">
     <form id="frmSucursal">
-        <!--onsubmit="return guardarBanco();">-->
         <div class="card-header">
             <h4>Mantenimiento de sucursales</h4>
         </div>
@@ -13,21 +12,21 @@
                     </div>
                     <div class="col-md-8">
                         <div class="form-group row">
-                            <label for="txtNombre" class="col-3 col-form-label">Banco:</label>
+                            <label for="cmbBanco" class="col-3 col-form-label">Banco:</label>
                             <div class="col-9">
-                               <select class="form-control" id="cmbBanco" onchange="llenarSucursales();"></select>
+                               <select class="form-control" id="cmbBanco" name="Banco" onchange="llenarSucursales();"></select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="txtNombre" class="col-3 col-form-label">Nombre:</label>
                             <div class="col-9">
-                                <input id="txtNombre" name="Nombre" type="text" class="form-control" value="" /> <!--required-->
+                                <input id="txtNombre" name="Nombre" type="text" class="form-control" value="" />
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="txtDireccion" class="col-3 col-form-label">Dirección:</label>
                             <div class="col-9">
-                                <input id="txtDireccion" name="Direccion" type="text" class="form-control" value="" /> <!--required-->
+                                <input id="txtDireccion" name="Direccion" type="text" class="form-control" value="" />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -39,17 +38,14 @@
                         <div class="form-group row">
                             <div class="col-3 col-form-label"></div>
                             <div class="col-9">
-                                <div id="btnGuardar" class="btn btn-primary" onclick="guardarSucursal()">Guardar</div> <!--required-->
-                                <div id="btnEliminar" class="btn btn-primary" onclick="eliminarSucursal()">Eliminar</div>
+                                <div id="btnRegistrar" class="btn btn-success" onclick="registrarSucursal()">Registrar</div>
+                                <div id="btnActualizar" class="btn btn-info" onclick="actualizarSucursal()">Actualizar</div>
+                                <div id="btnEliminar" class="btn btn-danger" onclick="eliminarSucursal()">Eliminar</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--<div class="card-footer">
-            <!--<div id="btnRegistrar" class="btn btn-primary" onclick="eV_registrar()">Registrar invitados</div>
-            <!--<button type="submit" class="btn btn-primary">Guardar</button>
-        </div>-->
     </form>
 </div>

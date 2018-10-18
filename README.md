@@ -38,3 +38,24 @@ Por ejemplo:
       -> OrdenPago.db                     --> Script para la generacion de tablas y procedimientos que utiliza la aplicación
             
             
+### Inventario de Apis:
+
+      -> "banco/registrar"                                  --> POST
+      -> "banco/actualizar"                                 --> POST
+      -> "banco/eliminar"                                   --> POST
+      -> "banco/listar"                                     --> GET
+      -> "banco/obtener/{id}"                               --> GET
+      
+      -> "ordenPago/registrar"                              --> POST
+      -> "ordenPago/actualizar"                             --> POST
+      -> "ordenPago/eliminar"                               --> POST
+      -> "ordenPago/listar/{sucursal}"                      --> GET
+      -> "ordenPago/obtener/{id}"                           --> GET
+      -> "ordenPago/filtrar/{nombreSucursal}/{moneda}"      --> GET
+      
+      -> "sucursal/registrar"                               --> POST
+      -> "sucursal/actualizar"                              --> POST
+      -> "sucursal/eliminar"                                --> POST
+      -> "sucursal/listar/{banco}"                          --> GET
+      -> "sucursal/obtener/{id}"                            --> GET
+      -> "sucursal/filtrar/{nombreBanco}"                   --> GET
